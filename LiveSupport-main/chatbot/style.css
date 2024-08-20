@@ -1,0 +1,132 @@
+/* Estilos Gerais */
+body {
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #f0f0f2;
+}
+
+/* Container do Chat */
+.botspace {
+    position: relative;
+    height: calc(90vh - 100px);
+    width: 100%;
+    max-height: 85%;
+    overflow-y: auto;
+    background-color: #33343f;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Estilos das Mensagens */
+.mensagem {
+    background-color: #494b59;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 80%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.mensagem.user {
+    margin-right: auto; 
+}
+
+.mensagem.bot {
+    margin-left: auto; 
+}
+
+/* Barra de Input */
+.chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+}
+
+/* Input de Texto */
+#user-input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Botão Enviar */
+#confirmPrompt {
+    background-color: #1E1E49;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.avaliacao {
+    margin-top: 20px; /* Espaçamento superior */
+    text-align: center;
+  }
+  
+  .estrelas {
+    display: flex;
+    justify-content: center; 
+    cursor: pointer; 
+  }
+  
+  .estrelas i {
+    font-size: 2rem;
+    color: #ccc; /* Cor das estrelas não selecionadas */
+    margin: 0 5px; 
+    transition: color 0.3s ease; /* Transição suave para a cor */
+  }
+  
+#requisicao {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+#requisicaoEmpresa {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+#requisicaoNome {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+#requisicaoEmail {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+#requisicaoMotivo {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+#requisicaoLida {
+    color: transparent;
+    background-color: transparent;
+    display: none;
+}
+
+  /* .estrelas i:hover,
+  .estrelas i.selecionada {
+    color: gold;
+  } */

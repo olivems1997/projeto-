@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Notificações</h2>
+        <button id="btn-filtro-lidas" class="btn btn-secondary">Mostrar Apenas Não Lidas</button>
+        <button id="btn-coletar-motivos" class="btn btn-primary">Ordem de relavância (IA)</button>
+        <div id="lista-notificacoes"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+      </script>
+      
+    <script defer>
+
+        // Número de notificações por página
+        const NOTIFICACOES_POR_PAGINA = 4;
+
+        // Variável para armazenar a página atual
+        let paginaAtual = 1;
+
+        let mostrarApenasNaoLidas = false; // Variável para controlar o filtro
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHM_Un_OqWYlbgSyswQTuHU-mQqrt1Y20",
+            authDomain: "support-67692.firebaseapp.com",
+            projectId: "support-67692",
+            storageBucket: "support-67692.appspot.com",
+            messagingSenderId: "234582709996",
+            appId: "1:234582709996:web:fd6fa8c87b65ca0751b7c9",
+            measurementId: "G-LPH8XF28N4",
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Obter a referência do Firestore
+        const db = firebase.firestore();
+
+        // Obter o empresaId da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const empresaId = urlParams.get("empresaId");
+
+        // Buscar notificações da empresa
+        function carregarNotificacoes(pagina) {
+            const listaNotificacoes = document.getElementById("lista-notificacoes");
+            listaNotificacoes.innerHTML = ""; // Limpar a lista
+
+            const inicio = (pagina - 1) * NOTIFICACOES_POR_PAGINA;
+            const fim = inicio + NOTIFICACOES_POR_PAGINA;
+
+            let query = db.collection("notificacoes")
+            .where("empresa", "==", empresaId);
+
+            if (mostrarApenasNaoLidas) {
+                query = query.where("lida", "==", false); // Adicionar filtro se necessário
+            }
+
+            query.get()
+                .then((querySnapshot) => {
+                    const totalNotificacoes = querySnapshot.size;
+                    const totalPaginas = Math.ceil(totalNotificacoes / NOTIFICACOES_POR_PAGINA);
+
+                    if (querySnapshot.empty) {
+                        listaNotificacoes.innerHTML = "<p>Nenhuma notificação encontrada.</p>";
+                        return;
+                    }
+
+                    querySnapshot.docs.slice(inicio, fim).forEach((doc) => {
+                        const notificacao = doc.data();
+
+                        // Criar um card para cada notificação
+                        const card = document.createElement("div");
+                        card.classList.add("card", "mb-3");
+                        card.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${notificacao.nome}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${notificacao.email}</h6>
+                                <p class="card-text"><strong>Motivo:</strong> ${notificacao.motivo}</p>
+                                <p class="card-text"><strong>Lida:</strong> ${notificacao.lida ? "Sim" : "Não"}</p>
+                                <button class="btn btn-primary btn-marcar-lida ${notificacao.lida ? 'lida' : ''}" data-notificacao-id="${doc.id}">${notificacao.lida ? 'Marcar como Não Lida' : 'Marcar como Lida'}</button>
+                                <button class="btn btn-danger btn-excluir-notificacao" data-notificacao-id="${doc.id}">Excluir</button> 
+                            </div>
+                        `;
+
+                        listaNotificacoes.appendChild(card);
+                    });
+
+                    criarBotoesPaginacao(totalPaginas);
+
+                    // Adicionar evento de clique aos botões "Marcar como Lida" e "Excluir"
+                    const botoes = document.querySelectorAll(".btn-marcar-lida, .btn-excluir-notificacao");
+                    botoes.forEach(botao => {
+                        botao.addEventListener("click", () => {
+                            const notificacaoId = botao.dataset.notificacaoId;
+                            if (botao.classList.contains("btn-marcar-lida")) {
+                                marcarNotificacaoComoLida(notificacaoId, event); // Passar o evento como argumento
+                            } else if (botao.classList.contains("btn-excluir-notificacao")) {
+                                excluirNotificacao(notificacaoId);
+                            }
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error("Erro ao buscar notificações: ", error);
+                    listaNotificacoes.innerHTML = "<p>Erro ao carregar notificações.</p>";
+                });
+        }
+
+        // Função para excluir uma notificação
+        function excluirNotificacao(notificacaoId) {
+            if (confirm("Tem certeza que deseja excluir esta notificação?")) {
+                db.collection("notificacoes")
+                .doc(notificacaoId)
+                .delete()
+                .then(() => {
+                    console.log("Notificação excluída com sucesso!");
+                    carregarNotificacoes(paginaAtual); // Recarregar as notificações
+                })
+                .catch((error) => {
+                    console.error("Erro ao excluir notificação:", error);
+                    // Lidar com o erro, por exemplo, exibindo uma mensagem para o usuário
+                });
+            }
+        }
+
+        // Função para criar os botões de paginação
+        function criarBotoesPaginacao(totalPaginas) {
+            const paginacao = document.createElement("nav");
+            paginacao.setAttribute("aria-label", "Paginação de Notificações");
+            const ul = document.createElement("ul");
+            ul.classList.add("pagination", "justify-content-center");
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                const li = document.createElement("li");
+                li.classList.add("page-item"); // Adicionar a classe "page-item" sempre
+
+                // Adicionar a classe "active" somente quando i for igual a paginaAtual
+                if (i === paginaAtual) {
+                    li.classList.add("active"); 
+                }
+                const link = document.createElement("a");
+                link.classList.add("page-link");
+                link.href = "#"; // Para evitar redirecionamento padrão
+                link.textContent = i;
+                link.addEventListener("click", () => {
+                    paginaAtual = i; // Atualizar a página atual
+                    carregarNotificacoes(paginaAtual); // Carregar as notificações da nova página
+                });
+                li.appendChild(link);
+                ul.appendChild(li);
+            }
+
+            paginacao.appendChild(ul);
+            document.getElementById("lista-notificacoes").appendChild(paginacao);
+        }
+
+        const btnFiltroLidas = document.getElementById("btn-filtro-lidas");
+
+btnFiltroLidas.addEventListener("click", () => {
+  mostrarApenasNaoLidas = !mostrarApenasNaoLidas; // Inverter o estado do filtro
+  btnFiltroLidas.textContent = mostrarApenasNaoLidas ? "Mostrar Todas" : "Mostrar Apenas Não Lidas"; // Alterar o texto do botão
+  paginaAtual = 1; // Resetar para a primeira página ao mudar o filtro
+  carregarNotificacoes(paginaAtual); // Recarregar as notificações
+});
+
+        // Função para marcar uma notificação como lida
+        function marcarNotificacaoComoLida(notificacaoId, event) { // Adicionar "event" como parâmetro
+            const card = event.target.closest('.card');
+            const lidaElement = card.querySelector('p:nth-child(4)');
+
+            db.collection("notificacoes")
+            .doc(notificacaoId)
+            .update({ lida: !event.target.classList.contains('lida') }) // Inverter o estado de "lida"
+            .then(() => {
+            console.log("Notificação atualizada com sucesso!");
+            // Atualizar o texto "Lida: Sim/Não" no card
+            lidaElement.textContent = `Lida: ${!event.target.classList.contains('lida') ? "Sim" : "Não"}`;
+
+            // Adicionar/remover a classe 'lida' do botão
+            event.target.classList.toggle('lida');
+
+            // Atualizar o contador de notificações não lidas no ícone
+            verificarNotificacoesNaoLidas(empresaId); 
+            })
+            .catch((error) => {
+            console.error("Erro ao atualizar notificação:", error);
+            });
+        }
+
+        // Carregar as notificações ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            carregarNotificacoes(paginaAtual);
+        });
+    </script>
+
+    <script type="module">
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+
+// Fetch your API_KEY
+const API_KEY = "AIzaSyBCVK1OC5pYomKkEiX078N--2qzEsOls9o";
+
+// Access your API key (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI(API_KEY);
+
+const safetySetting = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory. HARM_CATEGORY_SEXUALLY_EXPLICIT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+];
+
+const generationConfig = {
+  stopSequences: [""],
+  maxOutputTokens: 100000,
+  temperature: 0.6,
+  topP: 0.1,
+  topK: 16,
+};
+
+async function buscarInfoEmpresa(empresaId) {
+  try {
+    let infoEmpresa = {
+      perguntasRespostas: [],
+      produtos: []
+    };
+
+    // Consultar a coleção de perguntas
+    const perguntasSnapshot = await db.collection('perguntas')
+      .where('empresaId', '==', empresaId)
+      .get();
+
+    perguntasSnapshot.forEach(doc => {
+      const perguntaData = doc.data();
+      infoEmpresa.perguntasRespostas.push(`Pergunta: ${perguntaData.pergunta}, Resposta: ${perguntaData.resposta}; `);
+    });
+
+    // Consultar a coleção de produtos
+    const produtosSnapshot = await db.collection('produtos')
+      .where('empresaId', '==', empresaId)
+      .get();
+
+    produtosSnapshot.forEach(doc => {
+      const produtoData = doc.data();
+      infoEmpresa.produtos.push(`Nome do produto: ${produtoData.nome}, Descrição do produto: ${produtoData.descricao}; `);
+    });
+
+    console.log("Informações da Empresa:", infoEmpresa);
+    return infoEmpresa;
+
+  } catch (error) {
+    console.error("Erro ao buscar informações da empresa:", error);
+    return null;
+  }
+}
+
+    // Buscar informações da empresa
+    const infoEmpresa = await buscarInfoEmpresa(empresaId);
+
+
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", generationConfig, safetySetting });
+const chat = model.startChat({
+history: [  
+  {
+    role: "user",
+    parts: [{ text: `Você é uma IA que serve somente para analisar motivos de clientes contactarem uma empresa` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: `Entendi meu propósito, irei somente analisar isso` }],
+  },
+  {
+    role: "user",
+    parts: [{ text: `O nome da empresa é ${empresaId}, os produtos/serviços que a empresa oferece e suas descrições são: ${infoEmpresa.produtos} e algumas perguntas e respostas predefinidas pela empresa são: ${infoEmpresa.perguntasRespostas}` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: `Entendi como funciona a empresa, o que devo fazer?` }],
+  },
+  {
+    role: "user",
+    parts: [{ text: `Vou te dar motivos de clientes quererem contactar a empresa e você vai me dizer em ordem de relevância qual o mais importante do maior para o menor, e você vai basicamente coloca-los em uma tag <p> com o id "ordemMotivos" ou seja <p id="ordemMotivos">(motivos)<p> e cada motivo você vai colocar numa tag <h2> com seu id de relevancia respectivo como <p id="ordemMotivos"><h2 id="ordemMotivo1">(motivo)</h2> <h2 id="ordemMotivo2">(motivo)</h2></p> e assim em diante` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: `Tudo bem, vou seguir exatamente esse padrão` }],
+  },
+],
+generationConfig: {
+  maxOutputTokens: 100000,
+},
+});
+
+const btnColetarMotivos = document.getElementById("btn-coletar-motivos");
+
+btnColetarMotivos.addEventListener("click", async () => {
+  const motivos = [];
+
+  // Obter os cards das notificações visíveis na página atual
+  const cardsNotificacoes = document.querySelectorAll("#lista-notificacoes .card");
+
+  // Iterar pelos cards e extrair os motivos
+  cardsNotificacoes.forEach(card => {
+    const motivoElement = card.querySelector('p:nth-child(3)'); // Selecionar o elemento que contém o motivo
+    const motivo = motivoElement.textContent.replace("Motivo: ", "").trim(); // Extrair o texto do motivo
+    motivos.push(motivo);
+  });
+
+
+
+  const prompt = `Analise agora esses motivos: ${motivos}`
+
+  const history = await chat.getHistory();
+const msgContent = { role: "user", parts: [{ text: prompt }] };
+const contents = [...history, msgContent];
+const { totalTokens } = await model.countTokens({ contents });
+
+const result = await chat.sendMessageStream(prompt);
+const response = await result.response;
+const text = response.text();
+
+const formattedText = text
+.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+.replace(/\*/g, '<br>'); 
+
+
+
+  console.log("Motivos da página atual:", motivos);
+  console.log(formattedText);
+  // Faça o que você precisar com os motivos coletados, por exemplo:
+  // - Exibir em um alerta
+  // - Enviar para um servidor
+  // - Processar os dados
+
+  // Reordenar as notificações
+  const ordemMotivosElement = document.createElement('div');
+  ordemMotivosElement.innerHTML = formattedText;
+  const listaNotificacoes = document.getElementById("lista-notificacoes");
+
+  for (let i = 1; i <= motivos.length; i++) {
+    const motivoElement = ordemMotivosElement.querySelector(`#ordemMotivo${i}`);
+
+    if (motivoElement) {
+      const motivoTexto = motivoElement.textContent.trim();
+
+      // Encontrar o card correspondente ao motivo
+      const card = Array.from(listaNotificacoes.querySelectorAll(".card")).find(card => {
+        return card.querySelector('p:nth-child(3)').textContent.includes(motivoTexto);
+      });
+
+      if (card) {
+        // Mover o card para a posição correta
+        listaNotificacoes.appendChild(card); 
+      }
+    }
+  }
+});
+
+
+
+    </script>
+
+</body>
+</html>

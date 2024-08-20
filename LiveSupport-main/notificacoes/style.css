@@ -1,0 +1,62 @@
+/* notificacoes.html */
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-text {
+    margin-bottom: 15px;
+}
+
+.btn-marcar-lida {
+    background-color: #007bff; /* Cor azul padrão do Bootstrap */
+    color: white;
+    border: none;
+}
+
+.btn-marcar-nao-lida {
+    background-color: #007bff; /* Cor azul padrão do Bootstrap */
+    color: white;
+    border: none;
+}
+
+
+.pagination .page-link {
+    color: #007bff; /* Cor azul padrão do Bootstrap */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WorkIn</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    
+        <script src="https://kit.fontawesome.com/3da44e21a2.js" crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+
+        <link rel="shortcut icon" href="img/img/bLogo.png" type="image/x-icon">
+
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+    </head>
+<body>
+    <div class="botspace p-5">
+        <div class="chat-container">
+            <div id="chat-history">
+
+            </div>
+        </div>
+    </div>
+    <div class="avaliacao">
+      <p>Avalie o atendimento:</p>
+      <div class="estrelas">
+        <i class="bi bi-star-fill" id="estrela1" data-rating="1"></i>
+        <i class="bi bi-star-fill" id="estrela2" data-rating="2"></i>
+        <i class="bi bi-star-fill" id="estrela3" data-rating="3"></i>
+        <i class="bi bi-star-fill" id="estrela4" data-rating="4"></i>
+        <i class="bi bi-star-fill" id="estrela5" data-rating="5"></i>
+      </div>
+    </div>
+    <div class="chat-input"> 
+        <input type="text" id="user-input" placeholder="Mensagem...">
+        <button id="confirmPrompt" class="btn btn-light w-50">Enviar</button>
+    </div>
+    </body>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script>
+
+      var typed = new Typed(".auto-type",{
+          strings : ["Trabalhe", "Cresça", "Recrute"],
+          typeSpeed : 100,
+          backSpeed : 100,
+          loop : true,
+          loopCount: Infinity
+      })
+
+      setTimeout(function() {
+
+          $('#parallax1').parallax({imageSrc: 'img/cidadeparallax.png'});
+
+      }, 100)
+      
+
+    //   var i = 0;
+    //   var txt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras efficitur sagittis tempus. Fusce ultrices felis et congue tempus. Vivamus pretium urna vel nibh feugiat elementum. Phasellus vehicula iaculis nisl ut auctor. Vestibulum quis iaculis magna, at venenatis enim. Vivamus ultricies accumsan dui. Proin ultricies ac diam at blandit.';
+    //   var speed = 50;
+    //   let scroll = window.scrollY 
+
+    //   function typeWriter() {
+    //     if (i < txt.length) {
+    //       document.getElementById("paragrafo-about-enterprise").innerHTML += txt.charAt(i);
+    //       i++;
+    //       setTimeout(typeWriter, speed);
+    //     }
+    //   }
+
+    //   let paragrafo = document.getElementById("paragrafo-about-enterprise")
+    //   let texto = document.getElementById("text")
+
+    //   window.addEventListener('scroll', function() {
+    //   // Verifica se o usuário chegou na altura definida
+    //   if (window.scrollY >= 300) {
+    //     // Chama a função typewriter
+    //     typewriter(); 
+    //     // Remove o evento de rolagem para que a função seja executada apenas uma vez
+    //     window.removeEventListener('scroll', arguments.callee); 
+    //   }
+    // });
+
+
+
+
+
+
+
+  </script>
+
+<script type="module" defer>
+
+
+
+
+let input = document.getElementById("user-input")
+let inputV = input.value
+let btn = document.getElementById("confirmPrompt")
+let resultSpace = document.getElementById("chat-history")
+
+// Ouvinte de evento para o input
+input.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter' && document.activeElement === input) {
+    clicar(); // Chama a função clicar ao pressionar Enter
+  }
+});
+
+btn.addEventListener('click', clicar)
+
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+
+// Fetch your API_KEY
+const API_KEY = "AIzaSyBCVK1OC5pYomKkEiX078N--2qzEsOls9o";
+
+// Access your API key (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI(API_KEY);
+
+
+// Configurações do Firebase (substitua pelas suas credenciais reais)
+const firebaseConfig = {
+    apiKey: "AIzaSyDHM_Un_OqWYlbgSyswQTuHU-mQqrt1Y20",
+    authDomain: "support-67692.firebaseapp.com",
+    projectId: "support-67692",
+    storageBucket: "support-67692.appspot.com",
+    messagingSenderId: "234582709996",
+    appId: "1:234582709996:web:fd6fa8c87b65ca0751b7c9",
+    measurementId: "G-LPH8XF28N4",
+  };
+  
+  // Inicializar o Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Obter a referência do Firestore
+  const db = firebase.firestore();
+
+
+
+
+async function buscarInfoEmpresa(empresaId) {
+  try {
+    let infoEmpresa = {
+      perguntasRespostas: [],
+      produtos: []
+    };
+
+    // Consultar a coleção de perguntas
+    const perguntasSnapshot = await db.collection('perguntas')
+      .where('empresaId', '==', empresaId)
+      .get();
+
+    perguntasSnapshot.forEach(doc => {
+      const perguntaData = doc.data();
+      infoEmpresa.perguntasRespostas.push(`Pergunta: ${perguntaData.pergunta}, Resposta: ${perguntaData.resposta}; `);
+    });
+
+    // Consultar a coleção de produtos
+    const produtosSnapshot = await db.collection('produtos')
+      .where('empresaId', '==', empresaId)
+      .get();
+
+    produtosSnapshot.forEach(doc => {
+      const produtoData = doc.data();
+      infoEmpresa.produtos.push(`Nome do produto: ${produtoData.nome}, Descrição do produto: ${produtoData.descricao}; `);
+    });
+
+    console.log("Informações da Empresa:", infoEmpresa);
+    return infoEmpresa;
+
+  } catch (error) {
+    console.error("Erro ao buscar informações da empresa:", error);
+    return null;
+  }
+}
+
+
+
+const safetySetting = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory. HARM_CATEGORY_SEXUALLY_EXPLICIT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+];
+
+const generationConfig = {
+  stopSequences: [""],
+  maxOutputTokens: 100000,
+  temperature: 0.6,
+  topP: 0.1,
+  topK: 16,
+};
+
+  // Obter o empresaId da URL
+  const urlParams = new URLSearchParams(window.location.search);
+const empresaId = urlParams.get('empresaId');
+console.log("Empresa ID:", empresaId); // Verifique se está correto no console
+    // Buscar informações da empresa
+    const infoEmpresa = await buscarInfoEmpresa(empresaId);
+
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", generationConfig, safetySetting });
+const chat = model.startChat({
+history: [  
+  {
+    role: "user",
+    parts: [{ text: `Você é uma IA criada para o atendimento e o suporte a clientes na empresa chamada ${empresaId}` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: `Ok, vou falar coisas somente relacionadas à empresa ${empresaId}, te dar suporte nos produtos e servicos e informar sobre alguma pergunta que você tiver da empresa.` }],
+  },
+  {
+    role: "user",
+    parts: [{ text: "Quem é você?" }],
+  },
+  {
+    role: "model",
+    parts: [{ text: `Sou uma IA para te dar todo o suporte que você precisar em qualquer coisa relacionada à empresa ${empresaId}.` }],
+  },
+  {
+    role: "user",
+    parts: [{ text: "Qual o período de translação da terra?" }],
+  },
+  {
+    role: "model",
+    parts: [{ text: "Fui criada para responder perguntas relacionadas à empresa, e não outras perguntas." }],
+  },
+  {
+    role: "user",
+    parts: [{ text: `ok, agora preciso que voce me dê um prompt para eu colocar no codigo para ensinar ao bot sobre a empresa usando as informacoes da empresa pegas do banco de dados, das perguntas e dos produtos. os dados da empresa sao o seguinte, a empresa possui esses produtos: ${infoEmpresa.produtos}, e essas são perguntas predefinidas que o usuario pode perguntar ou algo parecido e o que voce deve responder: ${infoEmpresa.perguntasRespostas}` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: "Entendi perfeitamente sobre os produtos e as perguntas ja predefinidas e vou te responder com base nisso." }],
+  },
+  {
+    role: "user",
+    parts: [{ text: `Se eu pedir para falar com uma pessoa real, ou com a empresa ou algo assim, você pede o nome e o email e o motivo, assim que eu disser os tres você faz o seguinte, você vai falar dentro de uma tag <p> com o id requisicao todas as informações e cada informação vai ter uma tag <h2> com seu id respectivo, os ids são requisicaoNome, requisicaoMotivo, requisicaoEmail, requisicaoLida, requisicaoEmpresa, lembrando também de salvar o nome da empresa e uma h2 com id requisicaoLida que é necessariamente falso, como por EXEMPLO: <p id="requisicao"> <h2 id="requisicaoEmpresa">NOME DA EMPRESA</h2> <h2 id="requisicaoNome">NOME DA PESSOA</h2> <h2 id="requisicaoEmail">EMAIL DA PESSOA</h2> <h2 id="requisicaoMotivo">MOTIVO DA REQUISICÃO</h2> <h2 id="requisicaoLida">false</h2> </p>, eai quando ele der todos os dados certinho, você fala algo do tipo "enviei seu pedido para a empresa, acredito que logo eles irão te retornar", ou SE a empresa tiver disponibilizado um tempo determinado para responder as notificações você avisa a ela quanto é esse tempo, e SE a empresa tiver te dado alguma informação de contato você pode dizer algo como 'se você quiser entrar em contato a empresa oferece esses meios de contato: (contatos)'` }],
+  },
+  {
+    role: "model",
+    parts: [{ text: "Entendi, vou executar esse exato protocolo para se o cliente quiser conversar diretamente com a empresa." }],
+  },
+],
+generationConfig: {
+  maxOutputTokens: 100000,
+},
+});
+
+
+function processarRespostaIA(resposta) {
+  // Verificar se a resposta contém a tag #requisicao
+  if (resposta.includes('<p id="requisicao">')) {
+    // Extrair as informações da resposta
+    const requisicaoElement = document.createElement('div');
+    requisicaoElement.innerHTML = resposta;
+
+    const empresa = requisicaoElement.querySelector('#requisicaoEmpresa').textContent;
+    const lida = requisicaoElement.querySelector('#requisicaoLida').textContent;
+    const nome = requisicaoElement.querySelector('#requisicaoNome').textContent;
+    const motivo = requisicaoElement.querySelector('#requisicaoMotivo').textContent;
+    const email = requisicaoElement.querySelector('#requisicaoEmail').textContent;
+
+    // Salvar as informações no Firestore (coleção "notificacoes")
+    db.collection('notificacoes').add({
+      empresa: empresa,
+      lida: lida,
+      nome: nome,
+      motivo: motivo,
+      email: email
+    })
+    .then(() => {
+      console.log("Notificação salva com sucesso no Firestore!");
+    })
+    .catch((error) => {
+      console.error("Erro ao salvar notificação no Firestore:", error);
+    });
+  }
+}
+
+async function clicar() {
+let input = document.getElementById("user-input")
+let inputV = input.value
+
+let resultSpace = document.getElementById("chat-history")
+
+
+
+    
+
+
+
+
+
+
+const prompt = inputV
+
+
+// Desabilitar o botão "Enviar"
+document.getElementById("confirmPrompt").disabled = true; 
+
+
+  // Limpar o input
+  input.value = ""; 
+
+  // Criar a div para a mensagem "Gerando resposta..."
+const loadingDiv = document.createElement('div');
+loadingDiv.id = "loadingDiv"
+loadingDiv.innerHTML = `<p>Gerando resposta</p><span class="bi-circle-fill" id="loadResponse1"></span><span class="bi-circle-fill" id="loadResponse2"></span><span class="bi-circle-fill" id="loadResponse3"></span>`;
+resultSpace.appendChild(loadingDiv);
+
+
+
+
+
+//  const result = await model.generateContent(prompt);
+
+const history = await chat.getHistory();
+const msgContent = { role: "user", parts: [{ text: prompt }] };
+const contents = [...history, msgContent];
+const { totalTokens } = await model.countTokens({ contents });
+
+const result = await chat.sendMessageStream(prompt);
+const response = await result.response;
+const text = response.text();
+
+// Remover a mensagem "Gerando resposta..."
+resultSpace.removeChild(loadingDiv);
+
+//  const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+const formattedText = text
+.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+.replace(/\*/g, '<br>'); 
+
+//  resultSpace.innerHTML = `<p style="color: #fff;">${text}</p>`
+
+
+// Criar a div para o texto do usuário
+const userDiv = document.createElement('div');
+
+userDiv.id = "userPrompt"
+userDiv.innerHTML = `<p style="color: #fff;">${prompt}</p>`; // Estilo para o texto do usuário
+// Adicionar a div do usuário ao chat-history
+resultSpace.appendChild(userDiv);
+
+console.log(prompt)
+
+
+
+// Criar a div para a mensagem "Gerando resposta..."
+// const loadingDiv = document.createElement('div');
+// loadingDiv.classList.add('chat-message', 'bot-message');
+// loadingDiv.innerHTML = `<p>Gerando resposta...</p>`;
+// resultSpace.appendChild(loadingDiv);                      
+
+
+
+
+// Criar a div para o texto do chatbot
+const chatbotDiv = document.createElement('div');
+//  chatbotDiv.style.backgroundColor = "#92cf6e"
+chatbotDiv.id = "botResponse"
+//  chatbotDiv.innerHTML = `<p style="color: #fff;">${text}</p>`;
+chatbotDiv.innerHTML = `<p style="color: #fff;">${formattedText}</p>`;
+
+// Adicionar a div ao chat-history
+resultSpace.appendChild(chatbotDiv);
+
+
+
+
+ // Limpar o input
+input.value = ""; 
+
+//  ScrollReveal().reveal('#botResponse', { delay: 1000 }, { distance: "200px" }, { duration: 2000 });
+//  ScrollReveal().reveal('#userPrompt', { delay: 100 }, { distance: "200px" }, { duration: 2000 });
+
+// Desabilitar o botão "Enviar"
+document.getElementById("confirmPrompt").disabled = false; 
+
+processarRespostaIA(formattedText); 
+
+}
+
+//  let loadingExist = document.getElementById("loadingDiv")
+
+//  if(loadingExist === null) {
+//   input.addEventListener('keyup', function(event) {
+//     if (event.key === 'Enter') {
+//       clicar()
+//     }
+//   });
+//  } else {
+
+//  }
+
+
+// Selecionar todos os elementos de estrela
+const estrelas = document.querySelectorAll('.estrelas i');
+
+// Adicionar um ouvinte de evento para cada estrela
+estrelas.forEach(estrela => {
+  estrela.addEventListener('click', async () => {
+    const rating = estrela.dataset.rating;
+    console.log("Avaliação:", rating);
+
+    // Adicionar a classe 'selecionada' para destacar a estrela clicada
+    estrela.classList.add('selecionada');
+
+    // Remover as estrelas após a seleção (opcional)
+    const divAvaliacao = document.querySelector('.avaliacao');
+    divAvaliacao.style.display = 'none'; 
+
+    // Aqui você pode enviar a avaliação para o Firestore ou realizar outras ações
+
+    try {
+      // Salvar a avaliação no Firestore
+      await db.collection('avaliacoes').add({
+        empresaId: empresaId,
+        nota: parseInt(rating), // Converter rating para número inteiro
+      });
+
+      console.log("Avaliação salva com sucesso no Firestore!");
+    } catch (error) {
+      console.error("Erro ao salvar avaliação no Firestore:", error);
+      // Lidar com o erro, por exemplo, exibindo uma mensagem para o usuário
+    }
+  });
+});
+
+var estrela1 = document.getElementById("estrela1")
+var estrela2 = document.getElementById("estrela2")
+var estrela3 = document.getElementById("estrela3")
+var estrela4 = document.getElementById("estrela4")
+var estrela5 = document.getElementById("estrela5")
+
+estrela1.addEventListener("mouseover", estrela1In)
+estrela1.addEventListener("mouseout", estrela1Out)
+
+estrela2.addEventListener("mouseover", estrela2In)
+estrela2.addEventListener("mouseout", estrela2Out)
+
+estrela3.addEventListener("mouseover", estrela3In)
+estrela3.addEventListener("mouseout", estrela3Out)
+
+estrela4.addEventListener("mouseover", estrela4In)
+estrela4.addEventListener("mouseout", estrela4Out)
+
+estrela5.addEventListener("mouseover", estrela5In)
+estrela5.addEventListener("mouseout", estrela5Out)
+
+function estrela1In() {
+  estrela1.style.color = "gold"
+}
+function estrela1Out() {
+  estrela1.style.color = "#ccc"
+}
+
+function estrela2In() {
+  estrela1.style.color = "gold"
+  estrela2.style.color = "gold"
+}
+function estrela2Out() {
+  estrela1.style.color = "#ccc"
+  estrela2.style.color = "#ccc"
+}
+
+function estrela3In() {
+  estrela1.style.color = "gold"
+  estrela2.style.color = "gold"
+  estrela3.style.color = "gold"
+}
+function estrela3Out() {
+  estrela1.style.color = "#ccc"
+  estrela2.style.color = "#ccc"
+  estrela3.style.color = "#ccc"
+}
+
+function estrela4In() {
+  estrela1.style.color = "gold"
+  estrela2.style.color = "gold"
+  estrela3.style.color = "gold"
+  estrela4.style.color = "gold"
+}
+function estrela4Out() {
+  estrela1.style.color = "#ccc"
+  estrela2.style.color = "#ccc"
+  estrela3.style.color = "#ccc"
+  estrela4.style.color = "#ccc"
+}
+
+function estrela5In() {
+  estrela1.style.color = "gold"
+  estrela2.style.color = "gold"
+  estrela3.style.color = "gold"
+  estrela4.style.color = "gold"
+  estrela5.style.color = "gold"
+}
+function estrela5Out() {
+  estrela1.style.color = "#ccc"
+  estrela2.style.color = "#ccc"
+  estrela3.style.color = "#ccc"
+  estrela4.style.color = "#ccc"
+  estrela5.style.color = "#ccc"
+}
+
+</script> 
+
+<script defer>
+
+
+function load() {
+  firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+
+    let login = document.getElementById("login")
+
+    login.style.display = "none"
+
+
+    var usuariosLista = db.collection('users').doc(user.uid);
+
+    usuariosLista.get().then((doc) => {
+      if (doc.exists) {
+        const userData = doc.data()
+        // const city = userData.city
+        const pessoa = userData.pessoa
+
+        if (pessoa == "fisica") {
+          let perfil = document.getElementById("perfil")
+          let perfilEmpresa = document.getElementById("perfilEmpresa")
+          perfil.style.display = "inline"
+          perfilEmpresa.style.display = "none"
+
+        } else if (pessoa == "juridica") {
+          let perfil = document.getElementById("perfil")
+          let perfilEmpresa = document.getElementById("perfilEmpresa")
+          perfil.style.display = "none"
+          perfilEmpresa.style.display = "inline"
+        }
+
+      }
+    })
+
+
+  // Usuário está logado!
+  // console.log("Usuário logado:", user.uid);
+  // Faça o que você precisa, por exemplo:
+  // - Redirecione para a página home
+  // - Exiba o nome do usuário
+  // - Habilite conteúdo restrito
+} else {
+  let perfil = document.getElementById("perfil")
+  let perfilEmpresa = document.getElementById("perfilEmpresa")
+  perfil.style.display = "none"
+  perfilEmpresa.style.display = "none"
+// Usuário não está logado
+console.log("Usuário não está logado.");
+// Faça o que você precisa, por exemplo:
+// - Redirecione para a página de login
+// - Desabilite conteúdo restrito
+}
+})
+}
+
+
+// function click() {
+//     const db = firebase.firestore();
+
+//     let profName = document.getElementById("profileName")
+//     // profName.textContent = "A"
+//     // console.log(profName)
+//     firebase.auth().onAuthStateChanged(user => {
+//     if (user) {
+//         var usuariosLista = db.collection('users').doc(user.uid);
+
+//         usuariosLista.get().then((doc) => {
+//         if (doc.exists) {
+//             const userData = doc.data()
+//             const nome = userData.username
+
+//             profName.textContent = nome
+
+//             console.log("Document data:", doc.data());
+//         } else {
+//             // doc.data() will be undefined in this case
+//             console.log("No such document!");
+//         }
+//     }).catch((error) => {
+//         console.log("Error getting document:", error);
+//     });
+
+//         db.collection('users').doc(user.uid).set({
+//             username: profName,
+//         })
+//     // Usuário está logado!
+//     console.log("Usuário logado:", user.uid);
+//     // Faça o que você precisa, por exemplo:
+//     // - Redirecione para a página home
+//     // - Exiba o nome do usuário
+//     // - Habilite conteúdo restrito
+//     } else {
+//     // Usuário não está logado
+//     console.log("Usuário não está logado.");
+//     // Faça o que você precisa, por exemplo:
+//     // - Redirecione para a página de login
+//     // - Desabilite conteúdo restrito
+//     }
+// });
+// }
+</script>
+</html>

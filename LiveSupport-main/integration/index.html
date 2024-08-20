@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalização de Botão</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="css/prism-vs-code.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css"> <!-- Prism.js CSS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script> <!-- Prism.js JavaScript -->
+    <script defer src="js/script.js"></script>
+</head>
+   <body>
+    <div role="progressbar" aria-hidden="true" class="fixed inset-x-0 top-0 left-0 z-[101] h-[6px] lg:h-[3px]  animate-pulse">
+       <div class="h-full bg-gradient-to-r from-indigo-600 to-indigo-500 transition-all duration-500 ease-in-out w-0 opacity-0 transition-none"></div>
+    </div>
+    <div class="main-container dark mt-[70px] lg:mt-0">
+       <header class="root-container mt-0 py-3 flex justify-between top-0 fixed lg:relative items-center z-[100] bg-dark-700">
+          <a class="flex items-center p-3 py-0 xl:pr-10 lg:pr-8  2xl:pr-22 pr-5 translate-y-[2px] logo-wrapper" href="/"><img class="logo max-w-[85px]" src="images/logo-png-XGWSYHKJ.png" alt=""></a>
+          
+          <div class="lg:hidden">
+             <button class="relative inline-flex items-center justify-center text-gray-300 w-[40px] h-[40px]">
+                
+             </button>
+             <div style="position:fixed;top:1px;left:1px;width:1px;height:0;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0;display:none"></div>
+          </div>
+       </header>
+       <div class="root-container relative root-container--with-navigation rounded-b-[60px] border-b-2 border-dark-300 shadow-[rgba(0,_0,_0,_0.1)_0px_20px_25px_-5px,_rgba(0,_0,_0,_0.04)_0px_10px_10px_-5px]  mb-12" data-path="/vinodjangid07/nervous-gecko-43">
+          <div></div>
+          <div class="outlet-wrapper ">
+             <main class="mx-auto mb-40 xl:pr-10 border-none wrapper">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+                   <button id="voltar" class="font-semibold rounded-lg button button--secondary button--icon button--back hover:bg-dark-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                         <path d="M8.83 6a30.23 30.23 0 0 0-5.62 5.406A.949.949 0 0 0 3 12m5.83 6a30.233 30.233 0 0 1-5.62-5.406A.949.949 0 0 1 3 12m0 0h18"></path>
+                      </svg>
+                      Voltar
+                   </button>
+                   
+                </div>
+                <div class="block md:flex border-none md:min-h-[200px] rounded-xl overflow-hidden md:resize-y max-w-full md:flex-row md:h-[calc(100vh-220px)]">
+                   <div class="flex relative md:min-w-[330px] max-md:min-h-[450px] max-md:w-full h-[calc(100vh-140px)] md:h-auto md:min-h-[100px]" style="flex:0 0 auto;width:50%">
+                      <div class="absolute hidden md:block w-[5px] h-full bg-dark-300 top-0 right-0 z-10"></div>
+
+                      <div class="flex flex-1 absolute w-full left-0 top-0 py-10 h-full font-sans border-none" id="theme-container">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         <div class="flex h-full w-full text-black border-none">
+                            <div class="flex items-center justify-center h-full w-full relative z-[1]">
+                              <button class="chatBtn" data-scale="1.0">
+                                <svg id="chatSvg" height="1.6em" fill="white" xml:space="preserve" viewBox="0 0 1000 1000" y="0px" x="0px" version="1.1">
+                                    <path d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"></path>
+                                </svg>
+                                <span class="tooltip">Chat</span>
+                            </button>
+                            </div>
+                         </div>
+                         <div class="p-4 flex items-center border-none gap-3 absolute top-0 right-0 z-10">
+                          <span class="font-semibold border-none color-hex" style="color:#001f3f">#e8e8e8</span>
+                            <label class="block custom-switch cursor-pointer outline-none border-none" for="theme-switch">
+                               <div class="moon">
+                                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px] text-gray-500 border-none">
+                                     <path d="M21 13.9066C19.805 14.6253 18.4055 15.0386 16.9095 15.0386C12.5198 15.0386 8.9612 11.4801 8.9612 7.09034C8.9612 5.59439 9.37447 4.19496 10.0931 3C6.03221 3.91866 3 7.5491 3 11.8878C3 16.9203 7.07968 21 12.1122 21C16.451 21 20.0815 17.9676 21 13.9066Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                               </div>
+                               <div class="sun">
+                                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px] text-offwhite border-none">
+                                     <path d="M12 23V22M4.22183 19.7782L4.92893 19.0711M1 12H2M4.22183 4.22183L4.92893 4.92893M12 2V1M19.0711 4.92893L19.7782 4.22183M22 12H23M19.0711 19.0711L19.7782 19.7782M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                               </div>
+                               <input type="checkbox" id="theme-switch" class="input absolute translate-x-[1000px] outline-none border-none" checked="">
+                               <div class="slider border-none"></div>
+                            </label>
+                            <label for="color5123123" class="color-picker-label border-gray-300 border-[3px] border-solid w-[30px] h-[30px] rounded-md block cursor-pointer" style="background-color:#e8e8e8">
+                              <input type="color" name="color" id="color5123123" class="color-picker-input w-0 h-0 opacity-0 translate-y-6 border-none" value="#e8e8e8">
+                          </label>
+                         </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      
+                   </div>
+                   <div class="relative max-w-full overflow-hidden flex flex-col md:h-full h-[600px]" style="flex:1 1 0%">
+                      <div class="absolute z-20 bottom-0 max-w-[400px] w-full shadow-xl rounded-full" style="left:50%;opacity:0;transform:translateX(calc(-50%)) translateY(100%) translateZ(0)">
+                         <form class="flex mx-auto">
+                            <input type="text" name="prompt" id="prompt" placeholder="Write instructions..." class="block w-full font-sans font-normal placeholder:text-gray-400 px-6 py-3 pr-2 mr-px text-base border-none shadow-sm rounded-s-full bg-dark-500 focus:ring-sky-500 focus:border-sky-500 text-offwhite disabled:text-gray-400 disabled:opacity-90" value=""><input type="hidden" name="css" value=".chatBtn {
+                               width: 55px;
+                               height: 55px;
+                               display: flex;
+                               align-items: center;
+                               justify-content: center;
+                               border-radius: 50%;
+                               border: none;
+                               background-color: #FFE53B;
+                               background-image: linear-gradient(147deg, #FFE53B, #FF2525,#FFE53B);
+                               cursor: pointer;
+                               padding-top: 3px;
+                               box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.164);
+                               position: relative;
+                               background-size: 300%;
+                               background-position: left;
+                               transition-duration: 1s;
+                               }
+                               .tooltip {
+                               position: absolute;
+                               top: -40px;
+                               opacity: 0;
+                               background-color: rgb(255, 180, 82);
+                               color: white;
+                               padding: 5px 10px;
+                               border-radius: 5px;
+                               display: flex;
+                               align-items: center;
+                               justify-content: center;
+                               transition-duration: .5s;
+                               pointer-events: none;
+                               letter-spacing: 0.5px;
+                               }
+                               .chatBtn:hover .tooltip {
+                               opacity: 1;
+                               transition-duration: .5s;
+                               }
+                               .chatBtn:hover {
+                               background-position: right;
+                               transition-duration: 1s;
+                               }"><input type="hidden" name="html" value="<button class=" chatbtn"="">
+                            <svg height="1.6em" fill="white" xml:space="preserve" viewBox="0 0 1000 1000" y="0px" x="0px" version="1.1">
+                               <path d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"></path>
+                            </svg>
+                            <span class="tooltip">Chat</span>
+                            "&gt;
+                            <button type="submit" class="flex items-center px-3 py-1.5 pr-6 text-base gap-1.5 font-sans font-semibold transition-colors border-none cursor-pointer disabled:text-gray-400 disabled:opacity-90 bg-dark-600 hover:bg-dark-800 rounded-e-full pointer text-offwhite">
+                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="w-5 h-5 text-fuchsia-400">
+                                  <path d="M9.2467 3C9.65074 6.17905 12.5275 9.00324 15.6934 9.5C12.5275 9.99676 9.65074 12.8209 9.24669 16C8.84265 12.8209 6.16589 9.99676 3 9.5C6.16589 9.00324 8.84265 6.19877 9.2467 3.01971M17.3 20L17.2329 19.5924C17.0448 18.4504 16.1496 17.5552 15.0076 17.3671L14.6 17.3L15.0076 17.2329C16.1496 17.0448 17.0448 16.1496 17.2329 15.0076L17.3 14.6L17.3671 15.0076C17.5552 16.1496 18.4504 17.0448 19.5924 17.2329L20 17.3L19.5924 17.3671C18.4504 17.5552 17.5552 18.4504 17.3671 19.5924L17.3 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                               </svg>
+                               <span>Generate</span>
+                            </button>
+                         </form>
+                      </div>
+
+
+                      <!-- Botões para selecionar linguagem/framework -->
+<div class="language-buttons-wrapper">
+  <div id="languageButtons" class="flex items-center px-4 pt-2 hidden">
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-dark-700" data-lang="html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#e74d4d] w-5 h-5">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+            </svg>
+            HTML
+        </button>
+        <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-dark-700" data-lang="javascript">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#f0db4f] w-5 h-5">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+            </svg>
+            JavaScript
+        </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="react">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#61dafb] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          React
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="angular">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#dd0031] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Angular
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="vue">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#41b883] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Vue.js
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="svelte">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#ff3e00] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Svelte
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="php">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#8993be] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          PHP
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="python">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#3776ab] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Python
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="ruby">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#cc342d] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Ruby
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="java">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#5382a1] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Java
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="csharp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#178600] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          C#
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="typescript">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#007acc] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          TypeScript
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="nodejs">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#3c873a] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Node.js
+      </button>
+      <button class="language-btn px-4 py-1 pl-3 max-w-[170px] w-full cursor-pointer font-sans text-base font-semibold text-gray-200 flex gap-2 items-center transition-colors rounded-b-none border-none rounded-md label hover:bg-[#1e1e1e] bg-[#1e1e1e]" data-lang="lua">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-[#000080] w-5 h-5">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M12 18.178l4.62-1.256.623-6.778H9.026L8.822 7.89h8.626l.227-2.211H6.325l.636 6.678h7.82l-.261 2.866-2.52.667-2.52-.667-.158-1.844h-2.27l.329 3.544L12 18.178zM3 2h18l-1.623 18L12 22l-7.377-2L3 2z"></path>
+          </svg>
+          Lua
+      </button>
+  </div>
+</div>
+
+<!-- Botão de Voltar -->
+<button id="backButton" class="font-semibold rounded-lg button button--secondary button--icon button--back hover:bg-dark-600 hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M8.83 6a30.23 30.23 0 0 0-5.62 5.406A.949.949 0 0 0 3 12m5.83 6a30.233 30.233 0 0 1-5.62-5.406A.949.949 0 0 1 3 12m0 0h18"></path>
+    </svg>
+    Voltar para a personalização
+</button>
+
+
+
+                      <div class="flex flex-1 overflow-auto custom-scrollbar-editor bg-darkEditor relative max-h-[500px] min-h-0 md:max-h-none h-full">
+
+
+                        <button id="copyCodeButton" class="copy-all CSS false">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                              <path d="M16 4.038V4c0-.465 0-.697-.051-.888a1.5 1.5 0 0 0-1.06-1.06C14.697 2 14.464 2 14 2h-4c-.465 0-.697 0-.888.051a1.5 1.5 0 0 0-1.06 1.06C8 3.304 8 3.536 8 4v.038m8 0c0 .44-.001.665-.051.85a1.5 1.5 0 0 1-1.06 1.06C14.697 6 14.464 6 14 6h-4c-.465 0-.697 0-.888-.051a1.5 1.5 0 0 1-1.06-1.06C8.001 4.702 8 4.477 8 4.038m8 0c.784.047 1.34.155 1.816.397a4 4 0 0 1 1.748 1.748C20 7.04 20 8.16 20 10.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C16.96 22 15.84 22 13.6 22h-3.2c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C4 18.96 4 17.84 4 15.6v-5.2c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748c.475-.242 1.032-.35 1.816-.398"></path>
+                          </svg>
+                          <span class="copy-all__text">Copiar</span>
+                      </button>
+
+                         
+                         <div class="relative w-full">
+                            
+                          <div class="customization-panel">
+
+                            <div style="margin-bottom: 20px;">
+                            <label for="" class="" style="font-weight: var(--semibold);">Formato:</label>
+                            </div>
+                            <div class="button-container form-group" style="margin-left: -14px;">
+                                <br>
+                                <button class="shapeBtn button active" data-shape="circle">Círculo</button>
+                                <button class="shapeBtn button" data-shape="square">Quadrado</button>
+                                <button class="shapeBtn button" data-shape="diamond">Losango</button>
+                                <button class="shapeBtn button" data-shape="hexagon">Hexágono</button>
+                                <button class="shapeBtn button" data-shape="star">Estrela</button>
+                                <button class="shapeBtn button" data-shape="oval">Oval</button>
+                            </div>
+                            
+
+                            <div class="form-group">
+                                <label for="sizeSlider" class="label1" style="font-weight: var(--semibold);">Tamanho do Botão:</label>
+                                <div class="slider-container" style="display: flex; align-items: center; margin-top: 5px;">
+                                    <input type="range" id="sizeSlider" min="0.5" max="2.0" step="0.01" value="1.0" class="input" style="flex-grow: 1;">
+                                    <span id="currentSize" class="span" style="width: 50px; margin-left: 10px;">1.0</span>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        
+                            <div class="form-group">
+                                <label for="styleSelect" class="label1" style="font-weight: var(--semibold);">Estilo:</label>
+                                <div class="select" style="padding: 0px;">
+                                <select id="styleSelect" class="select">
+                                    <option value="solid">Sólido</option>
+                                    <option value="gradient">Gradiente</option>
+                                </select>
+                            </div>
+
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="solidColor" class="label1" style="font-weight: var(--semibold);">Cor Sólida:</label>
+                                <input type="color" id="solidColor" value="#0071e2" class="input">
+                            </div>
+                        
+                            <div id="gradientColors" class="form-group">
+                                <label for="gradientStart" class="label1" style="font-weight: var(--semibold);">Início Gradiente:</label>
+                                <input type="color" id="gradientStart" value="#0071e2" class="input">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="gradientMiddle" class="label1" style="font-weight: var(--semibold);">Meio Gradiente:</label>
+                                <input type="color" id="gradientMiddle" value="#FF2525" class="input">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="gradientEnd" class="label1" style="font-weight: var(--semibold);">Fim Gradiente:</label>
+                                <input type="color" id="gradientEnd" value="#FFE53B" class="input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pathColor" class="label1">Cor do Icone:</label>
+                                <input type="color" id="pathColor" value="#FFFFFF" class="input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tooltipSelect" class="label1">Conteúdo Tooltip:</label>
+                                <div class="select" style="padding: 0px;">
+                                <select id="tooltipSelect" class="select">
+                                    <option value="Chat">Chat</option>
+                                    <option value="No content">Sem conteúdo</option>
+                                    <!-- <option value="Você será redirecionado">Você será redirecionado</option> -->
+                                </select>
+                            </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="tooltipBgColor" class="label1">Cor do Fundo do Tooltip:</label>
+                                <input type="color" id="tooltipBgColor" value="#FFB452" class="input">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="tooltipTextColor" class="label1">Cor do Texto do Tooltip:</label>
+                                <input type="color" id="tooltipTextColor" value="#FFFFFF" class="input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="positionSelect" class="label1" style="font-weight: var(--semibold);">Posição do Botão:</label>
+                                <div class="select" style="padding: 0px;">
+                                <select id="positionSelect" class="select">
+                                    <option value="20px-20px">20px, 20px</option>
+                                    <option value="30px-40px">30px, 40px</option>
+                                    <option value="60px-80px">60px, 80px</option>
+                                    <option value="120px-140px">120px, 140px</option>
+                                    <option value="160px-190px">160px, 190px</option>
+                                </select>
+                            </div>
+                            </div>
+
+                            
+                            <div style="margin-top: 13%; margin-right: 90%;">
+                            <button id="confirmCustomization" class="shapeBtn button">Confirmar Personalização</button>
+                        </div>
+                        </div>
+
+                        <!-- Seção para exibir o código gerado -->
+    <div id="generatedCode" class="hidden">
+      <div class="editor">
+          <pre id="codeContainer"><code id="code" class="language-html"></code></pre>
+      </div>
+  </div>
+                          
+                          <!-- <div class="editor" style="position:relative;text-align:left;box-sizing:border-box;padding:0;overflow:hidden;font-size:16px;font-family:Menlo, Monaco, Consolas, " andale="" mono",="" "ubuntu="" monospace"="">
+                            <pre aria-hidden="true" style="margin:0;border:0;background:none;box-sizing:inherit;display:inherit;font-family:inherit;font-size:inherit;font-style:inherit;font-variant-ligatures:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;tab-size:inherit;text-indent:inherit;text-rendering:inherit;text-transform:inherit;white-space:pre-wrap;word-break:keep-all;overflow-wrap:break-word;position:relative;pointer-events:none;padding-top:16px;padding-right:16px;padding-bottom:16px;padding-left:16px"><span class="editorLineNumber">1</span><span class="token selector">.chatBtn</span> <span class="token punctuation">{</span>
+<span class="editorLineNumber">2</span>  <span class="token property">width</span><span class="token punctuation">:</span> 55px<span class="token punctuation">;</span>
+<span class="editorLineNumber">3</span>  <span class="token property">height</span><span class="token punctuation">:</span> 55px<span class="token punctuation">;</span>
+<span class="editorLineNumber">4</span>  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="editorLineNumber">5</span>  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="editorLineNumber">6</span>  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="editorLineNumber">7</span>  <span class="token property">border-radius</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+<span class="editorLineNumber">8</span>  <span class="token property">border</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="editorLineNumber">9</span>  <span class="token property">background-color</span><span class="token punctuation">:</span> #FFE53B<span class="token punctuation">;</span>
+<span class="editorLineNumber">10</span>  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">linear-gradient</span><span class="token punctuation">(</span>147deg<span class="token punctuation">,</span> #FFE53B<span class="token punctuation">,</span> #FF2525<span class="token punctuation">,</span>#FFE53B<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="editorLineNumber">11</span>  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="editorLineNumber">12</span>  <span class="token property">padding-top</span><span class="token punctuation">:</span> 3px<span class="token punctuation">;</span>
+<span class="editorLineNumber">13</span>  <span class="token property">box-shadow</span><span class="token punctuation">:</span> 5px 5px 10px <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.164<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="editorLineNumber">14</span>  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="editorLineNumber">15</span>  <span class="token property">background-size</span><span class="token punctuation">:</span> 300%<span class="token punctuation">;</span>
+<span class="editorLineNumber">16</span>  <span class="token property">background-position</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+<span class="editorLineNumber">17</span>  <span class="token property">transition-duration</span><span class="token punctuation">:</span> 1s<span class="token punctuation">;</span>
+<span class="editorLineNumber">18</span><span class="token punctuation">}</span>
+<span class="editorLineNumber">19</span>
+<span class="editorLineNumber">20</span><span class="token selector">.tooltip</span> <span class="token punctuation">{</span>
+<span class="editorLineNumber">21</span>  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+<span class="editorLineNumber">22</span>  <span class="token property">top</span><span class="token punctuation">:</span> -40px<span class="token punctuation">;</span>
+<span class="editorLineNumber">23</span>  <span class="token property">opacity</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="editorLineNumber">24</span>  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>255<span class="token punctuation">,</span> 180<span class="token punctuation">,</span> 82<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="editorLineNumber">25</span>  <span class="token property">color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+<span class="editorLineNumber">26</span>  <span class="token property">padding</span><span class="token punctuation">:</span> 5px 10px<span class="token punctuation">;</span>
+<span class="editorLineNumber">27</span>  <span class="token property">border-radius</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+<span class="editorLineNumber">28</span>  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="editorLineNumber">29</span>  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="editorLineNumber">30</span>  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="editorLineNumber">31</span>  <span class="token property">transition-duration</span><span class="token punctuation">:</span> .5s<span class="token punctuation">;</span>
+<span class="editorLineNumber">32</span>  <span class="token property">pointer-events</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="editorLineNumber">33</span>  <span class="token property">letter-spacing</span><span class="token punctuation">:</span> 0.5px<span class="token punctuation">;</span>
+<span class="editorLineNumber">34</span><span class="token punctuation">}</span>
+<span class="editorLineNumber">35</span>
+<span class="editorLineNumber">36</span><span class="token selector">.chatBtn:hover .tooltip</span> <span class="token punctuation">{</span>
+<span class="editorLineNumber">37</span>  <span class="token property">opacity</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
+<span class="editorLineNumber">38</span>  <span class="token property">transition-duration</span><span class="token punctuation">:</span> .5s<span class="token punctuation">;</span>
+<span class="editorLineNumber">39</span><span class="token punctuation">}</span>
+<span class="editorLineNumber">40</span>
+<span class="editorLineNumber">41</span><span class="token selector">.chatBtn:hover</span> <span class="token punctuation">{</span>
+<span class="editorLineNumber">42</span>  <span class="token property">background-position</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+<span class="editorLineNumber">43</span>  <span class="token property">transition-duration</span><span class="token punctuation">:</span> 1s<span class="token punctuation">;</span>
+<span class="editorLineNumber">44</span><span class="token punctuation">}</span><br></pre>
+                            
+                      
+                         </div> -->
+                      </div>
+                   </div>
+
+                   <div class="flex items-center justify-end gap-3 px-4 py-1 font-mono text-sm text-gray-400 bg-dark-500">
+                      <label for="prefixed" class="prefixes-checkbox cursor-pointer"><span class="label text-gray-400 font-mono font-normal">Alternar prefixos</span>
+                      <label class="checkbox-container text-xs">
+                         <input type="checkbox" name="prefixed" id="prefixed">
+                         <div class="checkmark"></div>
+                      </label>
+                      </label>
+                   </div>
+
+                </div>
+          </div>
+       </div>
+    </div>
+    </div>
+
+</body>
+</html>
